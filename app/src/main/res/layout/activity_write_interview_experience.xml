@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WriteInterviewExperienceActivity">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/interview_experience_company_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        app:cardElevation="10dp"
+      >
+
+        <AutoCompleteTextView
+            android:id="@+id/interview_experience_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionThreshold="0"
+            android:padding="15dp"
+            android:background="@drawable/post_style"
+            android:hint="company name"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/interview_experience_text_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/interview_experience_company_card_view"
+        android:layout_above="@id/post_interview_experience_btn"
+        android:layout_marginTop="10dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="4dp"
+        >
+        <EditText
+            android:id="@+id/interview_experience_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Please write your interview experience here..."
+            android:padding="10dp"
+            android:gravity="start"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/post_interview_experience_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/signinbuttoncolor"
+        android:text="post"/>
+
+
+
+</RelativeLayout>

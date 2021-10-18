@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterPlacedUser">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        app:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/welcome_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome Rahul"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/excited_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We are very exicited to register you"
+                android:gravity="center"
+                android:layout_below="@+id/welcome_text_view"
+                android:textColor="@color/teal_700"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/placed_user_institute_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute Name"
+                android:padding="15dp"
+                android:layout_below="@+id/excited_tv"
+                android:background="@drawable/post_style"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp" />
+
+            <EditText
+                android:id="@+id/placed_user_branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Branch"
+                android:padding="15dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"
+                android:layout_below="@+id/placed_user_institute_name"
+                android:background="@drawable/post_style"/>
+
+            <EditText
+                android:id="@+id/placed_user_batch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Batch"
+                android:padding="15dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"
+                android:layout_below="@+id/placed_user_branch"
+                android:background="@drawable/post_style"/>
+
+            <EditText
+                android:id="@+id/placed_user_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Company"
+                android:padding="15dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"
+                android:layout_below="@+id/placed_user_batch"
+                android:background="@drawable/post_style"/>
+
+               <ImageView
+                   android:id="@+id/resume_image_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="10dp"
+                   android:layout_below="@+id/placed_user_company" />
+
+
+            <ImageView
+                android:id="@+id/upload_resume_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/resume_image_view"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_upload" />
+
+            <TextView
+                android:id="@+id/upload_resume_txt_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="upload resume"
+                android:layout_below="@+id/upload_resume_btn"
+                android:gravity="center"
+                android:textColor="@color/black"
+                />
+            <Button
+                android:id="@+id/register_placed_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:background="@drawable/signinbuttoncolor"
+                android:layout_below="@+id/upload_resume_txt_view"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+   </RelativeLayout>
+
+</ScrollView>

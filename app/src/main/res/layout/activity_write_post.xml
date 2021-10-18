@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WritePostActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/post_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/post_style"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:hint="Write your post here ..."
+        android:gravity="top"
+        android:padding="5dp"
+        android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:id="@+id/write_post_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_below="@+id/post_edittext" />
+
+    <Button
+        android:id="@+id/post_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@drawable/signinbuttoncolor"
+        android:text="post"
+        android:layout_below="@+id/write_post_image"
+        android:layout_marginLeft="100dp"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/set_post_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/post_button"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/write_post_image"
+        android:text="upload image"/>
+
+</RelativeLayout>
+
+</ScrollView>

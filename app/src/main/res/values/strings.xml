@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Placed</string>
+    <string name="signin_button">signin</string>
+    <string name="signup_button">signup</string>
+    <string name="signup_text">Sign Up</string>
+    <string name="signup_edittext_name">Name</string>
+    <string name="signup_edittext_username">Username</string>
+    <string name="signup_edittext_password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="delete_account">delete account</string>
+    <string name="logout">Logout</string>
+    <string name="morevert">more_vert</string>
+    <string name="forgot_password">forgot password ?</string>
+    <string name="or_text_view">---------------------------- OR ---------------------------</string>
+    <string name="forgot_password_enter_your_username">Enter your username</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
