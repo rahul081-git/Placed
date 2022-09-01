@@ -19,7 +19,7 @@
 
    <item
        android:id="@+id/questions"
-       android:title="Interview Questions"
+       android:title="Interview Experience"
        android:icon="@drawable/ic_article"/>
 
    <item

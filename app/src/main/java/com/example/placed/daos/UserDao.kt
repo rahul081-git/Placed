@@ -17,6 +17,6 @@ class UserDao {
     }
 
     fun getUserById(uId : String) : Task<DocumentSnapshot> {
-        return userCollection.document(uId).get()
+        return db.collection("users").document(uId).get()
     }
 }

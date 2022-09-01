@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.bottom_nevigation_view
 
 class CreateOrAddActivity : AppCompatActivity() {
 
-    lateinit var mAuth:FirebaseAuth
+    lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,43 +26,37 @@ class CreateOrAddActivity : AppCompatActivity() {
         mAuth = Firebase.auth
 
         add_placed_user.setOnClickListener {
-            startActivity(Intent(this,RegisterPlacedUser::class.java))
-        }
-        next.setOnClickListener {
-            startActivity(Intent(this,ListOfPlacedPeople::class.java))
-        }
-        comment_btn.setOnClickListener {
-            startActivity(Intent(this,DemoActivity::class.java))
+            startActivity(Intent(this, RegisterPlacedUser::class.java))
         }
 
         bottom_nevigation_view.selectedItemId = R.id.create
 
-        bottom_nevigation_view.setOnNavigationItemSelectedListener { item->
+        bottom_nevigation_view.setOnNavigationItemSelectedListener { item ->
 
-            when(item.itemId){
+            when (item.itemId) {
 
-                R.id.dashboard-> {
-                    startActivity(Intent(this,MainActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.dashboard -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.people-> {
-                    startActivity(Intent(this,PlacedPeopleActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.people -> {
+                    startActivity(Intent(this, PlacedPeopleActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.create-> {
+                R.id.create -> {
                     true
                 }
-                R.id.questions-> {
-                    startActivity(Intent(this,InterViewQuestionsActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.questions -> {
+                    startActivity(Intent(this, InterViewQuestionsActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.profile-> {
+                R.id.profile -> {
 
-                    startActivity(Intent(this,UserProfileActivity::class.java))
-                    overridePendingTransition(0,0)
+                    startActivity(Intent(this, UserProfileActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
             }

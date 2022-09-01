@@ -31,10 +31,10 @@ class WritePostActivity : AppCompatActivity() {
         set_post_image.setOnClickListener {
 
             ImagePicker.with(this)
-                .crop()
-                .compress(1080)
-                .maxResultSize(1080,1080)
-                .start()
+                    .crop()
+                    .compress(1080)
+                    .maxResultSize(1080, 1080)
+                    .start()
         }
 
         post_button.setOnClickListener {
@@ -61,11 +61,11 @@ class WritePostActivity : AppCompatActivity() {
             pd.setTitle("Please wait")
             pd.show()
 
-            var imageRef = FirebaseStorage.getInstance().reference.child("Post/"+UUID.randomUUID()+"pic.jpg")
+            var imageRef = FirebaseStorage.getInstance().reference.child("Post/" + UUID.randomUUID() + "pic.jpg")
 
             imageRef.putFile(filePath).addOnSuccessListener {
+
                 pd.dismiss()
-                Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
                 imageRef.downloadUrl.addOnSuccessListener {
 
                     val postText = post_edittext.text.toString().trim()
@@ -74,10 +74,12 @@ class WritePostActivity : AppCompatActivity() {
 
                     if (!postText.isEmpty()) {
 
-                        postDao.addPost(postText,image)
+                        postDao.addPost(postText, image)
                         Toast.makeText(this, "Post Added Successfully", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
+                    } else {
+                        Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show()
                     }
                 }
 

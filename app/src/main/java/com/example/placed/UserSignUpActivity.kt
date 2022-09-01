@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.activity_user_sign_up.*
 
 class UserSignUpActivity : AppCompatActivity() {
 
-    private lateinit var mAuth : FirebaseAuth
-    private lateinit var filePath : String
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var filePath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,62 +26,63 @@ class UserSignUpActivity : AppCompatActivity() {
 
         signup_button.setOnClickListener {
 
-                if (validateForm(signup_name_edittext.text.toString().trim(), signup_username_edittext.text.toString().trim(), signup_password_edittext.text.toString().trim()))
+            if (validateForm(signup_name_edittext.text.toString().trim(), signup_username_edittext.text.toString().trim(), signup_password_edittext.text.toString().trim()))
 
-                   signUp(signup_name_edittext.text.toString().trim(), signup_username_edittext.text.toString().trim(), signup_password_edittext.text.toString().trim())
+                signUp(signup_name_edittext.text.toString().trim(), signup_username_edittext.text.toString().trim(), signup_password_edittext.text.toString().trim())
 
-           }
+        }
 
         signin_text.setOnClickListener {
             finish()
         }
 
-        }
-    fun signUp(name: String, email:String, password: String){
+    }
+
+    fun signUp(name: String, email: String, password: String) {
 
         var progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Registering")
         progressDialog.show()
 
-        mAuth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener(this) {task->
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
 
-                if(task.isSuccessful){
+                    if (task.isSuccessful) {
 
-                    val user = User(mAuth.currentUser?.uid.toString(),name,email)
-                    val usersDao = UserDao()
-                    usersDao.adduser(user)
+                        val user = User(mAuth.currentUser?.uid.toString(), name, email)
+                        val usersDao = UserDao()
+                        usersDao.adduser(user)
 
-                    progressDialog.dismiss()
-                    Toast.makeText(this,"signed up successfully", Toast.LENGTH_SHORT).show()
-                      finish()
-                     startActivity(Intent(this,MainActivity::class.java))
+                        progressDialog.dismiss()
+                        Toast.makeText(this, "signed up successfully", Toast.LENGTH_SHORT).show()
+                        finish()
+                        startActivity(Intent(this, MainActivity::class.java))
 
-                } else {
-                    progressDialog.dismiss()
-                    Toast.makeText(this,"something went wrong please try again", Toast.LENGTH_SHORT).show()
+                    } else {
+                        progressDialog.dismiss()
+                        Toast.makeText(this, "something went wrong please try again", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
-
-            }
     }
 
-    fun validateForm(name: String, email:String, password: String) : Boolean{
+    fun validateForm(name: String, email: String, password: String): Boolean {
 
-        return when{
+        return when {
 
-            TextUtils.isEmpty(name)->{
-               Toast.makeText(applicationContext,"Please enter a name",Toast.LENGTH_SHORT).show()
+            TextUtils.isEmpty(name) -> {
+                Toast.makeText(applicationContext, "Please enter a name", Toast.LENGTH_SHORT).show()
                 false
             }
-            TextUtils.isEmpty(email)->{
-                Toast.makeText(applicationContext,"Please enter a email/username",Toast.LENGTH_SHORT).show()
+            TextUtils.isEmpty(email) -> {
+                Toast.makeText(applicationContext, "Please enter a email/username", Toast.LENGTH_SHORT).show()
                 false
             }
-            TextUtils.isEmpty(password)->{
-                Toast.makeText(applicationContext,"Please enter a password",Toast.LENGTH_SHORT).show()
+            TextUtils.isEmpty(password) -> {
+                Toast.makeText(applicationContext, "Please enter a password", Toast.LENGTH_SHORT).show()
                 false
             }
-            else ->{
+            else -> {
                 true
             }
         }

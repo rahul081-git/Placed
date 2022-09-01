@@ -91,7 +91,7 @@
             android:id="@+id/like_count_post"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
-            android:text="0111"
+            android:text="0"
             android:gravity="center"
             android:layout_below="@id/post_like"
             android:layout_marginLeft="4dp"/>
@@ -110,7 +110,7 @@
             android:id="@+id/comment_count_post"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
-            android:text="0131"
+            android:text="0"
             android:gravity="center"
             android:layout_toRightOf="@+id/like_count_post"
             android:layout_below="@+id/post_comment"

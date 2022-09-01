@@ -26,7 +26,7 @@
                 android:id="@+id/welcome_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome Rahul"
+                android:text="Welcome !"
                 android:gravity="center"
                 android:textSize="30sp"
                 android:textColor="@color/black"
@@ -36,13 +36,13 @@
                 android:id="@+id/excited_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="We are very exicited to register you"
+                android:text="Please fill the details ..."
                 android:gravity="center"
                 android:layout_below="@+id/welcome_text_view"
                 android:textColor="@color/teal_700"
                 android:textStyle="bold"/>
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/placed_user_institute_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,6 +50,7 @@
                 android:padding="15dp"
                 android:layout_below="@+id/excited_tv"
                 android:background="@drawable/post_style"
+                android:completionThreshold="0"
                 android:layout_marginRight="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="4dp" />
@@ -78,7 +79,7 @@
                 android:layout_below="@+id/placed_user_branch"
                 android:background="@drawable/post_style"/>
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/placed_user_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,6 +88,7 @@
                 android:layout_marginRight="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="4dp"
+                android:completionThreshold="0"
                 android:layout_below="@+id/placed_user_batch"
                 android:background="@drawable/post_style"/>
 

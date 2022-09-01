@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_list_of_placed_people.*
 class ListOfPlacedPeople : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var adapter : PlacedPeopleListAdapter
+    private lateinit var adapter: PlacedPeopleListAdapter
     private var details = ArrayList<String>()
     private val users = ArrayList<User>()
     private val tempUsers = ArrayList<User>()
@@ -35,7 +35,7 @@ class ListOfPlacedPeople : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menuInflater.inflate(R.menu.search_menu,menu)
+        menuInflater.inflate(R.menu.search_menu, menu)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -48,22 +48,22 @@ class ListOfPlacedPeople : AppCompatActivity() {
 
     private fun setUpRecyclerView() {
         adapter = PlacedPeopleListAdapter(users)
-        placed_people_list_recycler_view.adapter= adapter
-        placed_people_list_recycler_view.layoutManager=GridLayoutManager(this,2)
+        placed_people_list_recycler_view.adapter = adapter
+        placed_people_list_recycler_view.layoutManager = GridLayoutManager(this, 2)
 
         FirebaseFirestore.getInstance()
                 .collection("users")
-                .whereEqualTo("instituteName","${details!!.get(0)}")
-                .whereEqualTo("company","${details.get(1)}")
+                .whereEqualTo("instituteName", "${details!!.get(0)}")
+                .whereEqualTo("company", "${details.get(1)}")
                 .get().addOnSuccessListener {
-            for (doc in it){
-                val user=doc.toObject(User::class.java)
-                users.add(user)
-            }
-            adapter.notifyDataSetChanged()
-        }
+                    for (doc in it) {
+                        val user = doc.toObject(User::class.java)
+                        users.add(user)
+                    }
+                    adapter.notifyDataSetChanged()
+                }
 
-        Toast.makeText(this,"${details!!.get(1)}",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "${details!!.get(1)}", Toast.LENGTH_SHORT).show()
     }
 }
 

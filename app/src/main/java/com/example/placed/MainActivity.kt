@@ -25,7 +25,7 @@ import kotlinx.coroutines.tasks.await
 
 class MainActivity : AppCompatActivity(), IPostAdapter {
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var adapter : PostAdapter
+    private lateinit var adapter: PostAdapter
     private lateinit var postDao: PostDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,42 +34,42 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
 
         mAuth = Firebase.auth
         postDao = PostDao()
-        
+
         add_post.setOnClickListener {
             startActivity(Intent(this, WritePostActivity::class.java))
         }
 
-         setUpRecyclerView()
+        setUpRecyclerView()
 
 
         bottom_nevigation_view.selectedItemId = R.id.dashboard
 
-        bottom_nevigation_view.setOnNavigationItemSelectedListener { item->
+        bottom_nevigation_view.setOnNavigationItemSelectedListener { item ->
 
-            when(item.itemId){
+            when (item.itemId) {
 
-                R.id.dashboard-> {
+                R.id.dashboard -> {
                     true
                 }
-                R.id.people-> {
-                    startActivity(Intent(this,PlacedPeopleActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.people -> {
+                    startActivity(Intent(this, PlacedPeopleActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.create-> {
-                    startActivity(Intent(this,CreateOrAddActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.create -> {
+                    startActivity(Intent(this, CreateOrAddActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.questions-> {
-                    startActivity(Intent(this,InterViewQuestionsActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.questions -> {
+                    startActivity(Intent(this, InterViewQuestionsActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.profile-> {
+                R.id.profile -> {
 
-                    startActivity(Intent(this,UserProfileActivity::class.java))
-                    overridePendingTransition(0,0)
+                    startActivity(Intent(this, UserProfileActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
             }
@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
         }
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
@@ -85,73 +86,74 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-      return when(item.itemId) {
-          R.id.logout -> {
-              mAuth.signOut()
-              Toast.makeText(applicationContext, "signout successful", Toast.LENGTH_SHORT).show()
-              startActivity(Intent(this,IntroActivity::class.java))
-              finish()
-              true
-          }
-          R.id.delete_account -> {
+        return when (item.itemId) {
+            R.id.logout -> {
+                mAuth.signOut()
+                Toast.makeText(applicationContext, "signout successful", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, IntroActivity::class.java))
+                finish()
+                true
+            }
+            R.id.delete_account -> {
 
                 val alertDialog = AlertDialog.Builder(this)
 
-                    alertDialog.setTitle("Delete Account")
-                      .setMessage("Are you sure?")
-                      .setPositiveButton("Yes"){ _, _ ->
-                          deleteAccount(mAuth)
+                alertDialog.setTitle("Delete Account")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("Yes") { _, _ ->
+                            deleteAccount(mAuth)
 
-                      }
-                      .setNegativeButton("No"){ _, _ ->
+                        }
+                        .setNegativeButton("No") { _, _ ->
 
 
-                      }.show()
-              true
-          }
-          R.id.notification-> {
-              startActivity(Intent(this,NotificationActivity::class.java))
-              true
-          }
-          R.id.share_app-> {
-              val i = Intent(Intent.ACTION_SEND)
-              i.type = "text/plain"
-              intent.putExtra(Intent.EXTRA_TEXT,"Hey checkout this App ")
-              val chooser=Intent.createChooser(intent,"Share using...")
-              startActivity(chooser)
-              true
-          }
-          else ->{
-              false
-          }
+                        }.show()
+                true
+            }
+            R.id.notification -> {
+                startActivity(Intent(this, NotificationActivity::class.java))
+                true
+            }
+            R.id.share_app -> {
+                val i = Intent(Intent.ACTION_SEND)
+                i.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, "Hey checkout this App ")
+                val chooser = Intent.createChooser(intent, "Share using...")
+                startActivity(chooser)
+                true
+            }
+            else -> {
+                false
+            }
 
-      }
+        }
         return super.onOptionsItemSelected(item)
     }
 
-    fun deleteAccount(user : FirebaseAuth){
+    fun deleteAccount(user: FirebaseAuth) {
 
         user.currentUser!!.delete()
-                .addOnCompleteListener{task->
-                    if (task.isSuccessful){
-                        Toast.makeText(applicationContext,"Account deleted successfully",Toast.LENGTH_SHORT).show()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(applicationContext, "Account deleted successfully", Toast.LENGTH_SHORT).show()
                         finish()
-                        startActivity(Intent(applicationContext,IntroActivity::class.java))
+                        startActivity(Intent(applicationContext, IntroActivity::class.java))
                     }
 
                 }
 
     }
+
     private fun setUpRecyclerView() {
 
         val db = FirebaseFirestore.getInstance()
         val postCollection = db.collection("post")
 
-        val query = postCollection.orderBy("createdAt",Query.Direction.DESCENDING)
+        val query = postCollection.orderBy("createdAt", Query.Direction.DESCENDING)
 
-        val recyclerViewOption = FirestoreRecyclerOptions.Builder<Post>().setQuery(query,Post::class.java).build()
+        val recyclerViewOption = FirestoreRecyclerOptions.Builder<Post>().setQuery(query, Post::class.java).build()
 
-        adapter = PostAdapter(recyclerViewOption , this)
+        adapter = PostAdapter(recyclerViewOption, this)
 
         post_recycler_view.adapter = adapter
         post_recycler_view.layoutManager = LinearLayoutManager(this)
@@ -166,13 +168,14 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
         super.onStop()
         adapter.stopListening()
     }
-    override fun onLikeClicked(postId : String){
-         PostDao().updateLikes(postId)
+
+    override fun onLikeClicked(postId: String) {
+        PostDao().updateLikes(postId)
     }
 
     override fun onCommentClicked(postId: String) {
-        val intent = Intent(this,PostComment::class.java)
-        intent.putExtra("postId",postId.toString())
+        val intent = Intent(this, PostComment::class.java)
+        intent.putExtra("postId", postId.toString())
         startActivity(intent)
     }
 }

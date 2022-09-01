@@ -22,12 +22,11 @@ import kotlin.collections.ArrayList
 
 class PlacedPeopleActivity : AppCompatActivity(), RecyclerAdapter.itemClicked {
 
-    lateinit private var mAuth:FirebaseAuth
-    private var layoutManager : RecyclerView.LayoutManager?=null
-    private var adapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>?=null
+    lateinit private var mAuth: FirebaseAuth
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     private var institute = ArrayList<Institute>()
     private var tempInstitute = ArrayList<Institute>()
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,41 +38,41 @@ class PlacedPeopleActivity : AppCompatActivity(), RecyclerAdapter.itemClicked {
 
         tempInstitute.addAll(institute)
 
-        mAuth= Firebase.auth
+        mAuth = Firebase.auth
 
-        layoutManager = GridLayoutManager(this,1)
+        layoutManager = GridLayoutManager(this, 1)
         recycler_view.layoutManager = layoutManager
-        adapter = RecyclerAdapter(this,institute)
+        adapter = RecyclerAdapter(this, institute)
         recycler_view.adapter = adapter
 
         bottom_nevigation_view.selectedItemId = R.id.people
 
-        bottom_nevigation_view.setOnNavigationItemSelectedListener { item->
+        bottom_nevigation_view.setOnNavigationItemSelectedListener { item ->
 
-            when(item.itemId){
+            when (item.itemId) {
 
-                R.id.dashboard-> {
-                    startActivity(Intent(this,MainActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.dashboard -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.people-> {
+                R.id.people -> {
                     true
                 }
-                R.id.create-> {
-                    startActivity(Intent(this,CreateOrAddActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.create -> {
+                    startActivity(Intent(this, CreateOrAddActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.questions-> {
-                    startActivity(Intent(this,InterViewQuestionsActivity::class.java))
-                    overridePendingTransition(0,0)
+                R.id.questions -> {
+                    startActivity(Intent(this, InterViewQuestionsActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
-                R.id.profile-> {
+                R.id.profile -> {
 
-                    startActivity(Intent(this,UserProfileActivity::class.java))
-                    overridePendingTransition(0,0)
+                    startActivity(Intent(this, UserProfileActivity::class.java))
+                    overridePendingTransition(0, 0)
                     finish()
                 }
             }
@@ -83,33 +82,38 @@ class PlacedPeopleActivity : AppCompatActivity(), RecyclerAdapter.itemClicked {
 
     private fun fillColleges() {
 
-        institute.add(Institute("NIT JAMSHEDPUR",R.drawable.nit_jamshedpur))
-        institute.add(Institute("NIT TRICHY",R.drawable.ic_baseline_people_24))
-        institute.add(Institute("NIT PATNA",R.drawable.nit_jamshedpur))
-        institute.add(Institute("NIT RAURKELA",R.drawable.user_default_image))
+        institute.add(Institute("Indian Institute of Technology, Bombay", R.drawable.iit_bombay))
+        institute.add(Institute("Indian Institute of Technology, Delhi", R.drawable.iit_delhi))
+        institute.add(Institute("Indian Institute of Technology, Kanpur", R.drawable.iit_kanpur))
+        institute.add(Institute("Indian Institute of Technology, Patna", R.drawable.iit_patna))
+        institute.add(Institute("National Institute of Technology, Jamshedpur", R.drawable.nit_jamshedpur))
+        institute.add(Institute("National Institute of Technology, Trichy", R.drawable.nit_trichy))
+        institute.add(Institute("National Institute of Technology, Raurkela", R.drawable.nit_raurkela))
+        institute.add(Institute("National Institute of Technology, Patna", R.drawable.nit_patna))
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-       menuInflater.inflate(R.menu.search_menu,menu)
+        menuInflater.inflate(R.menu.search_menu, menu)
 
-        val item =menu!!.findItem(R.id.search_item)
+        val item = menu!!.findItem(R.id.search_item)
         val searchView = item.actionView as SearchView
 
-        searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 TODO("Not yet implemented")
             }
 
-            override fun onQueryTextChange(text : String?): Boolean {
+            override fun onQueryTextChange(text: String?): Boolean {
                 val searchText = text!!.toLowerCase(Locale.getDefault())
                 institute.clear()
 
-                if(searchText.isNotEmpty()){
+                if (searchText.isNotEmpty()) {
 
                     tempInstitute.forEach {
 
-                        if(it.name.toLowerCase(Locale.getDefault()).contains(searchText)){
+                        if (it.name.toLowerCase(Locale.getDefault()).contains(searchText)) {
 
                             institute.add(it)
                         }
@@ -138,8 +142,8 @@ class PlacedPeopleActivity : AppCompatActivity(), RecyclerAdapter.itemClicked {
     }
 
     override fun onItemClicked(item: String) {
-        val intent = Intent(this,CompanyNameActivity::class.java)
-        intent.putExtra("instituteName","$item")
+        val intent = Intent(this, CompanyNameActivity::class.java)
+        intent.putExtra("instituteName", "$item")
         startActivity(intent)
     }
 

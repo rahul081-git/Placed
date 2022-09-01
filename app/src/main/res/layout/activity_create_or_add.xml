@@ -10,28 +10,21 @@
         android:id="@+id/bottom_nevigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_700"
         android:layout_alignParentBottom="true"
+        android:background="@color/teal_700"
         app:menu="@menu/bottom_nevigation_menu" />
 
-<Button
-    android:id="@+id/add_placed_user"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="add"/>
-
     <Button
-        android:id="@+id/next"
+        android:id="@+id/add_placed_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="next"
-        android:layout_below="@+id/add_placed_user"/>
-
-    <Button
-        android:id="@+id/comment_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="comment"
-        android:layout_below="@+id/next"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/add_btn_style"
+        android:padding="10dp"
+        android:text="add"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

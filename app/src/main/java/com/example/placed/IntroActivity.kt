@@ -24,11 +24,11 @@ class IntroActivity : AppCompatActivity() {
 
         mAuth = Firebase.auth
 
+        // IF THE USER IS ALREADY SIGNED IN
         if(mAuth.currentUser!=null){
             startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
-
 
         signin_button.setOnClickListener {
 
@@ -62,16 +62,18 @@ class IntroActivity : AppCompatActivity() {
                             startActivity(Intent(this,MainActivity::class.java))
                         } else {
                             progressDialog.dismiss()
-                            Toast.makeText(this, "something went wrong",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "username and password do not match",Toast.LENGTH_SHORT).show()
                    }
         }
     }
+
+    // CHECKING THE USERNAME / EMAIL AND PASSWORD OF THE USER.
     fun validateForm(email:String, password: String) : Boolean{
 
         return when{
 
             TextUtils.isEmpty(email)->{
-                Toast.makeText(applicationContext,"Please enter a email/username",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Please enter an email/username",Toast.LENGTH_SHORT).show()
                 false
             }
             TextUtils.isEmpty(password)->{

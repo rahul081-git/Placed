@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.activity_post_comment.*
 
 class PostComment : AppCompatActivity() {
 
-    private lateinit var postId : String
-    private lateinit var adapter : CommentAdapter
+    private lateinit var postId: String
+    private lateinit var adapter: CommentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,36 +28,33 @@ class PostComment : AppCompatActivity() {
 
         btn_post_comment.setOnClickListener {
             val text = write_comment_edittext.text.toString()
-            CommentDao().addComment(text,postId)
+            CommentDao().addComment(text, postId)
 
             write_comment_edittext.setText("")
 
-            Toast.makeText(this,"successfully commented",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Commented Successfully", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
     private fun setRecyclerView() {
         val al = ArrayList<Comments>()
         adapter = CommentAdapter(al)
-        comment_recycler_view.adapter= adapter
-        comment_recycler_view.layoutManager= LinearLayoutManager(this)
+        comment_recycler_view.adapter = adapter
+        comment_recycler_view.layoutManager = LinearLayoutManager(this)
 
-       FirebaseFirestore.getInstance()
-               .collection("comments")
-               .document(postId)
-               .collection("Publisher")
-               .get()
-               .addOnSuccessListener {
+        FirebaseFirestore.getInstance()
+                .collection("comments")
+                .document(postId)
+                .collection("Publisher")
+                .get()
+                .addOnSuccessListener {
 
-                   for(doc in it){
-                       val cmnt = doc.toObject(Comments::class.java)
-                       al.add(cmnt)
-                   }
-                   adapter.notifyDataSetChanged()
+                    for (doc in it) {
+                        val cmnt = doc.toObject(Comments::class.java)
+                        al.add(cmnt)
+                    }
+                    adapter.notifyDataSetChanged()
 
-
-       }
+                }
     }
 }
