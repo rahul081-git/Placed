@@ -30,7 +30,6 @@ class ListOfPlacedPeople : AppCompatActivity() {
         details = intent.getStringArrayListExtra("details") as ArrayList<String>
         setUpRecyclerView()
 
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
